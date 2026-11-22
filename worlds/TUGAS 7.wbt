@@ -1,0 +1,379 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+  basicTimeStep 32
+  contactProperties [
+    ContactProperties {
+      material1 "caster"
+      coulombFriction [
+        0
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.5773 0.5773 0.5773 2.0944
+  position 0 0 5.5
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 4 3
+  floorTileSize 4 3
+  floorAppearance PBRAppearance {
+    baseColor 1 1 1
+    roughness 1
+    metalness 0
+  }
+  wallHeight 0.15
+}
+
+# --- LINTASAN GARIS HITAM (1 Lurus Panjang + Tikungan Tajam Kiri & Kanan) ---
+Solid {
+  translation 0 -0.8 0.0001
+  children [
+    Shape {
+      appearance DEF TRACK_MAT PBRAppearance {
+        baseColor 0.02 0.02 0.02
+        roughness 1
+        metalness 0
+      }
+      geometry DEF TRACK_S1 Box {
+        size 2.23 0.06 0.0002
+      }
+    }
+  ]
+  name "track_s1"
+  boundingObject USE TRACK_S1
+}
+Solid {
+  translation 1.16 -0.74 0.0001
+  rotation 0 0 1 0.7854
+  children [
+    Shape {
+      appearance USE TRACK_MAT
+      geometry DEF TRACK_C1 Box {
+        size 0.21 0.06 0.0002
+      }
+    }
+  ]
+  name "track_c1"
+  boundingObject USE TRACK_C1
+}
+Solid {
+  translation 1.22 0 0.0001
+  children [
+    Shape {
+      appearance USE TRACK_MAT
+      geometry DEF TRACK_S2 Box {
+        size 0.06 1.39 0.0002
+      }
+    }
+  ]
+  name "track_s2"
+  boundingObject USE TRACK_S2
+}
+Solid {
+  translation 1.16 0.74 0.0001
+  rotation 0 0 1 -0.7854
+  children [
+    Shape {
+      appearance USE TRACK_MAT
+      geometry DEF TRACK_C2 Box {
+        size 0.21 0.06 0.0002
+      }
+    }
+  ]
+  name "track_c2"
+  boundingObject USE TRACK_C2
+}
+Solid {
+  translation 0.61 0.8 0.0001
+  children [
+    Shape {
+      appearance USE TRACK_MAT
+      geometry DEF TRACK_S3 Box {
+        size 1.01 0.06 0.0002
+      }
+    }
+  ]
+  name "track_s3"
+  boundingObject USE TRACK_S3
+}
+Solid {
+  translation 0.06 0.74 0.0001
+  rotation 0 0 1 0.7854
+  children [
+    Shape {
+      appearance USE TRACK_MAT
+      geometry DEF TRACK_C3 Box {
+        size 0.21 0.06 0.0002
+      }
+    }
+  ]
+  name "track_c3"
+  boundingObject USE TRACK_C3
+}
+Solid {
+  translation 0 0.45 0.0001
+  children [
+    Shape {
+      appearance USE TRACK_MAT
+      geometry DEF TRACK_S4 Box {
+        size 0.06 0.49 0.0002
+      }
+    }
+  ]
+  name "track_s4"
+  boundingObject USE TRACK_S4
+}
+Solid {
+  translation -0.06 0.16 0.0001
+  rotation 0 0 1 0.7854
+  children [
+    Shape {
+      appearance USE TRACK_MAT
+      geometry DEF TRACK_C4 Box {
+        size 0.21 0.06 0.0002
+      }
+    }
+  ]
+  name "track_c4"
+  boundingObject USE TRACK_C4
+}
+Solid {
+  translation -0.61 0.1 0.0001
+  children [
+    Shape {
+      appearance USE TRACK_MAT
+      geometry DEF TRACK_S5 Box {
+        size 1.01 0.06 0.0002
+      }
+    }
+  ]
+  name "track_s5"
+  boundingObject USE TRACK_S5
+}
+Solid {
+  translation -1.16 0.04 0.0001
+  rotation 0 0 1 0.7854
+  children [
+    Shape {
+      appearance USE TRACK_MAT
+      geometry DEF TRACK_C5 Box {
+        size 0.21 0.06 0.0002
+      }
+    }
+  ]
+  name "track_c5"
+  boundingObject USE TRACK_C5
+}
+Solid {
+  translation -1.22 -0.35 0.0001
+  children [
+    Shape {
+      appearance USE TRACK_MAT
+      geometry DEF TRACK_S6 Box {
+        size 0.06 0.69 0.0002
+      }
+    }
+  ]
+  name "track_s6"
+  boundingObject USE TRACK_S6
+}
+Solid {
+  translation -1.16 -0.74 0.0001
+  rotation 0 0 1 -0.7854
+  children [
+    Shape {
+      appearance USE TRACK_MAT
+      geometry DEF TRACK_C6 Box {
+        size 0.21 0.06 0.0002
+      }
+    }
+  ]
+  name "track_c6"
+  boundingObject USE TRACK_C6
+}
+
+# --- ROBOT LINE FOLLOWER LENGKAP HASIL TINKERCAD ---
+Robot {
+  translation -0.8 -0.8 0.0325
+  rotation 0 0 1 0
+  children [
+    # Model 3D Sasis Lengkap dari Tinkercad (Skala mm -> meter = 0.001)
+    Transform {
+      scale 0.001 0.001 0.001
+      children [
+        CadShape {
+          url [
+            "../meshes/chassis_complete.obj"
+          ]
+          castShadows FALSE
+        }
+      ]
+    }
+    # Roda Kiri + Motor
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0 0.08 0
+      }
+      device [
+        RotationalMotor {
+          name "left_motor"
+          maxVelocity 20
+          maxTorque 10
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.08 0
+        children [
+          Transform {
+            scale 0.001 0.001 0.001
+            children [
+              CadShape {
+                url [
+                  "../meshes/wheel_complete.obj"
+                ]
+                castShadows FALSE
+              }
+            ]
+          }
+        ]
+        name "left_wheel"
+        boundingObject Pose {
+          rotation 1 0 0 1.5708
+          children [
+            Cylinder {
+              height 0.025
+              radius 0.0325
+            }
+          ]
+        }
+        physics Physics {
+          density -1
+          mass 0.05
+        }
+      }
+    }
+    # Roda Kanan + Motor
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0 -0.08 0
+      }
+      device [
+        RotationalMotor {
+          name "right_motor"
+          maxVelocity 20
+          maxTorque 10
+        }
+      ]
+      endPoint Solid {
+        translation 0 -0.08 0
+        children [
+          Transform {
+            scale 0.001 0.001 0.001
+            children [
+              CadShape {
+                url [
+                  "../meshes/wheel_right_complete.obj"
+                ]
+                castShadows FALSE
+              }
+            ]
+          }
+        ]
+        name "right_wheel"
+        boundingObject Pose {
+          rotation 1 0 0 1.5708
+          children [
+            Cylinder {
+              height 0.025
+              radius 0.0325
+            }
+          ]
+        }
+        physics Physics {
+          density -1
+          mass 0.05
+        }
+      }
+    }
+    # Roda Penyeimbang Depan (Caster Wheel Licin)
+    Solid {
+      translation 0.125 0 -0.0225
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.75 0.1 0.1
+            roughness 0.4
+            metalness 0.2
+          }
+          geometry DEF CASTER_SPHERE Sphere {
+            radius 0.01
+          }
+        }
+      ]
+      name "front_caster"
+      contactMaterial "caster"
+      boundingObject USE CASTER_SPHERE
+      physics Physics {
+        density -1
+        mass 0.01
+      }
+    }
+    # Sensor Inframerah Kiri (Menghadap Tegak Lurus ke Bawah)
+    DistanceSensor {
+      translation 0.15 0.025 -0.015
+      rotation 0 1 0 1.5708
+      name "ir_left"
+      lookupTable [
+        0 1000 0
+        0.025 1000 0
+        0.06 0 0
+      ]
+      type "infra-red"
+      numberOfRays 1
+      aperture 0.1
+    }
+    # Sensor Inframerah Kanan (Menghadap Tegak Lurus ke Bawah)
+    DistanceSensor {
+      translation 0.15 -0.025 -0.015
+      rotation 0 1 0 1.5708
+      name "ir_right"
+      lookupTable [
+        0 1000 0
+        0.025 1000 0
+        0.06 0 0
+      ]
+      type "infra-red"
+      numberOfRays 1
+      aperture 0.1
+    }
+  ]
+  name "line_follower_imam"
+  boundingObject Pose {
+    translation 0.03 0 0.005
+    children [
+      Box {
+        size 0.15 0.11 0.03
+      }
+    ]
+  }
+  physics Physics {
+    density -1
+    mass 0.45
+    centerOfMass [
+      0.03 0 -0.005
+    ]
+  }
+  controller "line_follower_controller"
+}
